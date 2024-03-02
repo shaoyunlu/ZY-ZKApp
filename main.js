@@ -22,7 +22,7 @@ import {isEmpty} from './utils/data.js'
 App.onLaunch = ()=>{
 	if (isEmpty(g_user.account)){
 		uni.redirectTo({
-			url : 'pages/login/login'
+			url : '/pages/login/login'
 		})
 	}
 	else{

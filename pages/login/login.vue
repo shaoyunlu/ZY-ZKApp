@@ -14,6 +14,7 @@
 
 <script>
 import { defineComponent, reactive, ref } from "vue"
+import http from '../../utils/http.js'
 	export default defineComponent({
 		setup(){
 			const formRef = ref(null)
@@ -23,7 +24,17 @@ import { defineComponent, reactive, ref } from "vue"
 			})
 			const handleSubmit = ()=>{
 				formRef.value.validate().then(()=>{
-					console.log(formData)
+					uni.showLoading()
+					http.post({
+						url : 'login/login',
+						data : formData,
+						successFn : (res)=>{
+							uni.hideLoading()
+							uni.redirectTo({
+								url: '/pages/index/index'
+							})
+						}
+					})
 				}).catch(()=>{
 					
 				})
